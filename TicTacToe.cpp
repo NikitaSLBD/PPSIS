@@ -36,9 +36,6 @@ void TicTacToe::set_content(unsigned int index)
 
 void TicTacToe::operator [] (unsigned int index)
 {
-
-    try
-    {
         if (this->Field[index] == '_')
         {
             this->set_content(index);
@@ -46,12 +43,8 @@ void TicTacToe::operator [] (unsigned int index)
         else
         {
             this->switch_player();
+            throw "This cell is filled";
         }
-    }
-    catch (...)
-    {
-        throw "Index out of range";
-    }
 }
 
 bool TicTacToe::is_horizontal_win(char symbol)

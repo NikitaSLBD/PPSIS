@@ -1,5 +1,6 @@
+#include "pch.h"
 #include "CppUnitTest.h"
-#include "../TicTacToe.cpp"
+#include "../../TicTacToe.cpp"
 
 using namespace Microsoft::VisualStudio::CppUnitTestFramework;
 
@@ -8,7 +9,7 @@ namespace UnitTestTTT
 	TEST_CLASS(UnitTestTTT)
 	{
 	public:
-		
+
 		TEST_METHOD(get_contentTest)
 		{
 			TicTacToe TTT;
@@ -50,21 +51,8 @@ namespace UnitTestTTT
 		TEST_METHOD(operatTest_invalidmove)
 		{
 			TicTacToe TTT;
-
-			try
-			{
-				TTT[12];
-			}
-			catch (const char exception[])
-			{
-				Assert::AreEqual(exception, "Index out of range");
-			}
-		}
-
-		TEST_METHOD(operatTest_validmove_fillcell)
-		{
-			TicTacToe TTT;
 			TTT[0];
+			TTT.switch_player();
 
 			try
 			{
@@ -81,9 +69,15 @@ namespace UnitTestTTT
 			TicTacToe TTT;
 			TTT[0];
 			TTT.switch_player();
-			TTT[0];
 
-			Assert::IsTrue(TTT.get_player());
+			try
+			{
+				TTT[0];
+			}
+			catch (...)
+			{
+				Assert::IsTrue(TTT.get_player());
+			}
 		}
 
 		TEST_METHOD(is_winTest_notwin)
