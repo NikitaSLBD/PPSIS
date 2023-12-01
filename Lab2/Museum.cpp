@@ -24,36 +24,28 @@ string Person::get_MiddleName()
 //------------------MuseumBuilder----------------------//
 
 
-MuseumBuilder MuseumBuilder::set_Manager(string name, string surname, string middlename)
+void MuseumBuilder::set_Manager(string name, string surname, string middlename)
 {
 	Construction.Manager.Name = name;
 	Construction.Manager.Surname = surname;
 	Construction.Manager.MiddleName = middlename;
-
-	return *this;
 }
 
-MuseumBuilder MuseumBuilder::set_HR(string name, string surname, string middlename)
+void MuseumBuilder::set_HR(string name, string surname, string middlename)
 {
 	Construction.HR.Name = name;
 	Construction.HR.Surname = surname;
 	Construction.HR.MiddleName = middlename;
-
-	return *this;
 }
 
-MuseumBuilder MuseumBuilder::init_Chambers()
+void MuseumBuilder::init_Chambers()
 {
 	Construction.Chambers = {};
-
-	return *this;
 }
 
-MuseumBuilder MuseumBuilder::init_Staff()
+void MuseumBuilder::init_Staff()
 {
 	Construction.Staff = {};
-
-	return *this;
 }
 
 Museum MuseumBuilder::build()
@@ -78,7 +70,7 @@ StaffAdministrator Museum::get_HR()
 //------------------MuseumAdministrator----------------------//
 
 
-vector <Section> MuseumAdministrator::get_Chambers(Museum& museum)
+vector <Section> MuseumAdministrator::get_Chambers(Museum museum)
 {
 	return museum.Chambers;
 }
@@ -94,7 +86,7 @@ void MuseumAdministrator::set_Exhibits(Museum& museum, string ExpoName, const ve
 	}
 }
 
-vector <Exhibit> MuseumAdministrator::get_Exhibits(Museum& museum, string ExpoName)
+vector <Exhibit> MuseumAdministrator::get_Exhibits(Museum museum, string ExpoName)
 {
 	for (int i = 0; i < museum.Chambers.size(); i++)
 	{
@@ -107,12 +99,12 @@ vector <Exhibit> MuseumAdministrator::get_Exhibits(Museum& museum, string ExpoNa
 	throw "!This Exposition isn't exist!";
 }
 
-void MuseumAdministrator::add(Museum& museum, const Section& New)
+void MuseumAdministrator::add(Museum& museum, Section New)
 {
 	museum.Chambers.push_back(New);
 }
 
-void MuseumAdministrator::remove(Museum& museum, Section& Del)
+void MuseumAdministrator::remove(Museum& museum, Section Del)
 {
 	for (int i = 0; i < museum.Chambers.size(); i++)
 	{
@@ -123,7 +115,7 @@ void MuseumAdministrator::remove(Museum& museum, Section& Del)
 	}
 }
 
-void MuseumAdministrator::change(Museum& museum, Section& Old, const Section& New)
+void MuseumAdministrator::change(Museum& museum, Section Old, Section New)
 {
 	for (int i = 0; i < museum.Chambers.size(); i++)
 	{
@@ -142,7 +134,7 @@ Exposition Section::get_Expo()
 	return this->Expo;
 }
 
-bool Section::operator == (Section& right)
+bool Section::operator == (Section right)
 {
 	for (int i = 0; i < this->Items.size(); i++)
 	{
@@ -155,7 +147,7 @@ bool Section::operator == (Section& right)
 
 //------------------Exposition----------------------//
 
-bool Exposition::operator == (Exposition& right)
+bool Exposition::operator == (Exposition right)
 {
 	return this->get_Name() == right.get_Name() &&
 		   this->Description == right.Description;
@@ -164,7 +156,7 @@ bool Exposition::operator == (Exposition& right)
 
 //------------------Exhibit----------------------//
 
-bool Exhibit::operator == (Exhibit& right)
+bool Exhibit::operator == (Exhibit right)
 {
 	return this->get_Name() == right.get_Name() &&
 		this->Description == right.Description;
@@ -179,22 +171,22 @@ void StaffAdministrator::set_Path(Guide& Employer, vector <Section> path)
 	Employer.Path = path;
 }
 
-vector <Section> StaffAdministrator::get_Path(Guide& Employer)
+vector <Section> StaffAdministrator::get_Path(Guide Employer)
 {
 	return Employer.get_Path();
 }
 
-vector <Guide> StaffAdministrator::get_Staff(Museum& museum)
+vector <Guide> StaffAdministrator::get_Staff(Museum museum)
 {
 	return museum.Staff;
 }
 
-void StaffAdministrator::add(Museum& museum, const Guide& New)
+void StaffAdministrator::add(Museum& museum, Guide New)
 {
 	museum.Staff.push_back(New);
 }
 
-void StaffAdministrator::remove(Museum& museum, Guide& Del)
+void StaffAdministrator::remove(Museum& museum, Guide Del)
 {
 	for (int i = 0; i < museum.Staff.size(); i++)
 	{
@@ -206,7 +198,7 @@ void StaffAdministrator::remove(Museum& museum, Guide& Del)
 	}
 }
 
-void StaffAdministrator::change(Museum& museum, Guide& Old, const Guide& New)
+void StaffAdministrator::change(Museum& museum, Guide Old, Guide New)
 {
 	for (int i = 0; i < museum.Staff.size(); i++)
 	{
@@ -221,7 +213,7 @@ void StaffAdministrator::change(Museum& museum, Guide& Old, const Guide& New)
 
 //------------------Guide----------------------//
 
-bool Guide::operator == (Guide& right)
+bool Guide::operator == (Guide right)
 {
 	for (int i = 0; i < this->get_Path().size(); i++)
 	{
@@ -257,7 +249,7 @@ void Guide::start_tour()
 
 template <class C>
 
-string Guide::get_Description(C& Object)
+string Guide::get_Description(C Object)
 {
 	return Object.Description;
 }

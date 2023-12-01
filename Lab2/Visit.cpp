@@ -13,13 +13,21 @@ Ticket Visitor::get_Pass()
 
 void Visitor::buy_ticket(Ticket& ticket)
 {
-	this->Pass = ticket;
+	if (ticket.get_count())
+	{
+		this->Pass = ticket;
+		ticket.count_decrement();
+	}
+	else
+		throw "!This ticket isn't available!";
+	
 }
 
 void Visitor::enter(TicketChecker& checker)
 {
-	if (checker.is_valid(this->Pass.get_Info()))
+	if (checker.is_valid(this->Pass))
 	{
+		this->Pass.count_increment();
 		Ticket pass(NULL);
 		this->Pass = pass;
 	}
@@ -36,11 +44,11 @@ vector <Ticket> TicketChecker::get_TicketList()
 	return this->TicketList;
 }
 
-bool TicketChecker::is_valid(const string pass_info)
+bool TicketChecker::is_valid(Ticket pass)
 {
 	for (int i = 0; i < this->get_TicketList().size(); i++)
 	{
-		if (this->get_TicketList()[i].get_Info() == pass_info)
+		if (this->get_TicketList()[i] == pass)
 		{
 			return true;
 		}
@@ -52,6 +60,11 @@ bool TicketChecker::is_valid(const string pass_info)
 
 //------------------Ticket----------------------//
 
+
+bool Ticket::operator == (Ticket right)
+{
+	return this->get_Info() == right.get_Info();
+}
 
 unsigned int Ticket::get_count()
 {
@@ -77,12 +90,12 @@ void Ticket::count_decrement()
 //------------------TicketEmitter----------------------//
 
 
-void TicketEmitter::add(TicketChecker& checker, const Ticket& New)
+void TicketEmitter::add(TicketChecker& checker, Ticket New)
 {
 	checker.TicketList.push_back(New);
 }
 
-void TicketEmitter::remove(TicketChecker& checker, Ticket& Del)
+void TicketEmitter::remove(TicketChecker& checker, Ticket Del)
 {
 	for (int i = 0; i < checker.TicketList.size(); i++)
 	{
@@ -93,7 +106,7 @@ void TicketEmitter::remove(TicketChecker& checker, Ticket& Del)
 	}
 }
 
-void TicketEmitter::change(TicketChecker& checker, Ticket& Old, const Ticket& New)
+void TicketEmitter::change(TicketChecker& checker, Ticket Old, Ticket New)
 {
 	for (int i = 0; i <checker.TicketList.size(); i++)
 	{

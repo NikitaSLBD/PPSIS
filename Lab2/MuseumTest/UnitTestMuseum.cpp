@@ -254,4 +254,118 @@ namespace UnitTestMuseum
 		}
 
 	};
+
+	TEST_CLASS(UnitTestGuide)
+	{
+	public:
+
+		TEST_METHOD(startANDend_tour)
+		{
+			Guide teller;
+
+			teller.start_tour();
+			Assert::IsTrue(teller.is_busy());
+
+			teller.end_tour();
+			Assert::IsFalse(teller.is_busy());
+		}
+	};
+}
+
+namespace UnitTestVisit
+{
+	TEST_CLASS(UnitTestVisitor)
+	{
+	public:
+
+		TEST_METHOD(Constructor)
+		{
+			Visitor human;
+
+			Assert::AreEqual(human.get_Name(), string(""));
+			Assert::IsTrue(human.get_Pass() == Ticket(NULL));
+			
+		}
+
+		TEST_METHOD(buy_ticketValid)
+		{
+			Visitor human;
+			Ticket pass(12);
+			
+			human.buy_ticket(pass);
+		
+			Assert::IsTrue(human.get_Pass() == pass);
+
+		}
+
+		TEST_METHOD(buy_ticketInvalid)
+		{
+			Visitor human;
+			Ticket pass(0);
+
+			try
+			{
+				human.buy_ticket(pass);
+			}
+			catch (const char exception[])
+			{
+				Assert::AreEqual(exception, "!This ticket isn't available!");
+			}
+
+		}
+
+		TEST_METHOD(enter)
+		{
+			Visitor human;
+			TicketChecker checker;
+			Ticket pass(1);
+
+			human.buy_ticket(pass);
+
+			TicketEmitter::add(checker, pass);
+
+			human.enter(checker);
+
+			Assert::IsTrue(human.get_Pass() == Ticket(NULL));
+
+		}
+	};
+
+	TEST_CLASS(UnitTestTicketEmitter)
+	{
+	public:
+
+		TEST_METHOD(Add)
+		{
+			TicketChecker checker;
+			Ticket pass(15, "Pass to History branch");
+
+			TicketEmitter::add(checker, pass);
+
+			Assert::IsTrue(checker.get_TicketList()[0] == pass);
+		}
+
+		TEST_METHOD(Remove)
+		{
+			TicketChecker checker;
+			Ticket pass(15, "Pass to History branch");
+
+			TicketEmitter::add(checker, pass);
+			TicketEmitter::remove(checker, pass);
+
+			Assert::IsTrue(checker.get_TicketList().empty());
+		}
+
+		TEST_METHOD(Change)
+		{
+			TicketChecker checker;
+			Ticket oldPass(15, "Old pass");
+			Ticket newPass(12, "New pass");
+
+			TicketEmitter::add(checker, oldPass);
+			TicketEmitter::change(checker, oldPass, newPass);
+
+			Assert::IsTrue(checker.get_TicketList()[0] == newPass);
+		}
+	};
 }

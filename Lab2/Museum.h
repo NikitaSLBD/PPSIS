@@ -28,9 +28,9 @@ template <class C1, class C2>
 
 class IManagement
 {
-	virtual void add(C1&, const C2&) = 0;
-	virtual void remove(C1&, C2&) = 0;
-	virtual void change(C1&, C2&, const C2&) = 0;
+	virtual void add(C1&, C2) = 0;
+	virtual void remove(C1&, C2) = 0;
+	virtual void change(C1&, C2, C2) = 0;
 };
 
 class Object
@@ -68,7 +68,7 @@ class Exhibit : public Object
 
 public:
 	Exhibit(std::string name = "", std::string description = "") : Object(name), Description(description) {};
-	bool operator == (Exhibit& right);
+	bool operator == (Exhibit right);
 };
 
 class Exposition : public Object
@@ -79,7 +79,7 @@ class Exposition : public Object
 
 public:
 	Exposition(std::string name = "", std::string description = "") : Object(name), Description(description) {};
-	bool operator == (Exposition& right);
+	bool operator == (Exposition right);
 };
 
 class Section
@@ -92,7 +92,7 @@ class Section
 public:
 	Section(std::string name = "", std::string description = "") : Expo(name, description) {};
 	Exposition get_Expo();
-	bool operator == (Section& right);
+	bool operator == (Section right);
 };
 //Lowest Classes
 
@@ -112,27 +112,27 @@ public:
 	std::string get_Specialization();
 	std::vector <Section> get_Path();
 	bool is_busy();
-	bool operator == (Guide& right);
+	bool operator == (Guide right);
 
 	void start_tour();
 	void end_tour();
 
 	template <class C>
-	std::string get_Description(C& Object);
+	std::string get_Description(C Object);
 };
 
 class MuseumAdministrator : public Person, public IManagement <Museum, Section>
 {
 public:
 
-	std::vector <Section> get_Chambers(Museum& museum);
+	std::vector <Section> get_Chambers(Museum museum);
 
 	void set_Exhibits(Museum& museum, std::string sectionExpoName, std::vector <Exhibit> exhibits = {});
-	std::vector <Exhibit> get_Exhibits(Museum& museum, std::string sectionExpoName);
+	std::vector <Exhibit> get_Exhibits(Museum museum, std::string sectionExpoName);
 
-	void add(Museum& museum, const Section& New) override;
-	void remove(Museum& museum, Section& Del) override;
-	void change(Museum& museum, Section& Old, const Section& New) override;
+	void add(Museum& museum, Section New) override;
+	void remove(Museum& museum, Section Del) override;
+	void change(Museum& museum, Section Old, Section New) override;
 };
 
 class StaffAdministrator : public Person, public IManagement<Museum, Guide>
@@ -140,13 +140,13 @@ class StaffAdministrator : public Person, public IManagement<Museum, Guide>
 public:
 
 	void set_Path(Guide& Employer, std::vector <Section> path = {});
-	std::vector <Section> get_Path(Guide& Employer);
+	std::vector <Section> get_Path(Guide Employer);
 
-	std::vector <Guide> get_Staff(Museum& museum);
+	std::vector <Guide> get_Staff(Museum museum);
 
-	void add(Museum& museum, const Guide& New) override;
-	void remove(Museum& museum, Guide& Del) override;
-	void change(Museum& museum, Guide& Old, const Guide& New) override;
+	void add(Museum& museum, Guide New) override;
+	void remove(Museum& museum, Guide Del) override;
+	void change(Museum& museum, Guide Old, Guide New) override;
 };
 //High Classes
 
@@ -176,10 +176,10 @@ class MuseumBuilder
 	Museum Construction;
 
 public:
-	MuseumBuilder set_Manager(std::string name = "", std::string surname = "", std::string middlename = "");
-	MuseumBuilder set_HR(std::string name = "", std::string surname = "", std::string middlename = "");
-	MuseumBuilder init_Chambers();
-	MuseumBuilder init_Staff();
+	void set_Manager(std::string name = "", std::string surname = "", std::string middlename = "");
+	void set_HR(std::string name = "", std::string surname = "", std::string middlename = "");
+	void init_Chambers();
+	void init_Staff();
 	Museum build();
 };
 

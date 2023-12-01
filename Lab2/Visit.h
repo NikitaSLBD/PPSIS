@@ -21,6 +21,7 @@ class Object;
 //Lowest Class
 class Ticket
 {
+	friend class Visitor;
 	friend class TicketEmitter;
 
 	unsigned int count;
@@ -32,6 +33,7 @@ class Ticket
 public:
 	Ticket(unsigned int num = 0, std::string info = "") : count(num), Info(info) {}
 	unsigned int get_count();
+	bool operator == (Ticket right);
 	std::string get_Info();
 
 };
@@ -40,7 +42,7 @@ public:
 //High Classes
 class TicketChecker
 {
-	friend void enter(TicketChecker& checker);
+	friend void enter(TicketChecker checker);
 	friend class TicketEmitter;
 
 	std::vector <Ticket> TicketList;
@@ -48,14 +50,15 @@ class TicketChecker
 public:
 	std::vector <Ticket> get_TicketList();
 	TicketChecker() : TicketList({}) {}
-	bool is_valid(const string pass_info);
+	bool is_valid(Ticket pass);
 };
 
-class TicketEmitter : IManagement<TicketChecker, Ticket>
+static class TicketEmitter : IManagement<TicketChecker, Ticket>
 {
-	void add(TicketChecker& checker, const Ticket& New) override;
-	void remove(TicketChecker& checker, Ticket& Del) override;
-	void change(TicketChecker& checker, Ticket& Old, const Ticket& New) override;
+public:
+	static void add(TicketChecker& checker, Ticket New);
+	static void remove(TicketChecker& checker, Ticket Del);
+	static void change(TicketChecker& checker, Ticket Old, Ticket New);
 };
 //High Classes
 
@@ -64,11 +67,11 @@ class Visitor: public Object
 {
 	Ticket Pass;
 
+public:
+	Visitor(std::string name = "") : Object(name), Pass() {}
 	Ticket get_Pass();
 	void buy_ticket(Ticket& ticket);
 	void enter(TicketChecker& checker);
-
-	Visitor(std::string name) : Object(name), Pass(NULL) {}
 };
 
 
