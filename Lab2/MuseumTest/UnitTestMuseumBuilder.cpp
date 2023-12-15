@@ -1,6 +1,7 @@
 #include "pch.h"
 #include "CppUnitTest.h"
 #include "../Museum.cpp"
+#include "../Museum.cpp"
 #include "../Visit.cpp"
 
 using namespace Microsoft::VisualStudio::CppUnitTestFramework;
