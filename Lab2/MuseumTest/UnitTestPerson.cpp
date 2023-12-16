@@ -1,7 +1,7 @@
 #include "pch.h"
 #include "CppUnitTest.h"
 #include "../Person.cpp"
-#include "../Object.h"
+#include "../Object.cpp"
 
 using namespace Microsoft::VisualStudio::CppUnitTestFramework;
 

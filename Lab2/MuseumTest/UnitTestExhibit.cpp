@@ -19,5 +19,14 @@ namespace UnitTestExhibit
 			Assert::IsTrue(item1 == item2);
 
 		}
+
+		TEST_METHOD(NOTequal)
+		{
+			Exhibit item1("Axe");
+			Exhibit item2;
+
+			Assert::IsFalse(item1 == item2);
+
+		}
 	};
 }

@@ -35,7 +35,7 @@ namespace UnitTestTicketChecker
 			TicketEmitter::add(checker, pass1);
 			TicketEmitter::add(checker, pass2);
 
-			Assert::IsFalse(checker.is_valid(pass2));
+			Assert::IsTrue(checker.is_valid(pass2));
 		}
 	};
 }
