@@ -17,19 +17,19 @@ namespace UnitTestSection
 
 		TEST_METHOD(get_Expo)
 		{
-			Section room("World history");
-			Exposition expo("World history");
+			Section Room("World history");
+			Exposition Expo("World history");
 
-			Assert::IsTrue(room.get_Expo() == expo);
+			Assert::IsTrue(Room.get_Expo() == Expo);
 
 		}
 
 		TEST_METHOD(Equal)
 		{
-			Section room1("", "World history");
-			Section room2("", "World history");
+			Section Room1("", "World history");
+			Section Room2("", "World history");
 
-			Assert::IsTrue(room1 == room2);
+			Assert::IsTrue(Room1 == Room2);
 
 		}
 	};

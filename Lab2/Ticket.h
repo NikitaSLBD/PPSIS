@@ -9,7 +9,7 @@ class Ticket
 	friend class Visitor;
 	friend class TicketEmitter;
 
-	unsigned int count;
+	unsigned int Count;
 	std::string Info;
 
 	void count_increment();
@@ -17,7 +17,7 @@ class Ticket
 
 public:
 	Ticket(unsigned int num = 0, std::string info = "") : count(num), Info(info) {}
-	unsigned int get_count();
+	unsigned int get_Count();
 	bool operator == (Ticket right);
 	std::string get_Info();
 

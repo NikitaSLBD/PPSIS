@@ -17,53 +17,53 @@ namespace UnitTestVisitor
 
 		TEST_METHOD(Constructor)
 		{
-			Visitor human;
+			Visitor Human;
 
-			Assert::AreEqual(human.get_Name(), string(""));
-			Assert::IsTrue(human.get_Pass() == Ticket(NULL));
+			Assert::AreEqual(Human.get_Name(), string(""));
+			Assert::IsTrue(Human.get_Pass() == Ticket(NULL));
 
 		}
 
 		TEST_METHOD(buy_ticketValid)
 		{
-			Visitor human;
-			Ticket pass(12);
+			Visitor Human;
+			Ticket Pass(12);
 
-			human.buy_ticket(pass);
+			Human.buy_ticket(Pass);
 
-			Assert::IsTrue(human.get_Pass() == pass);
+			Assert::IsTrue(Human.get_Pass() == Pass);
 
 		}
 
 		TEST_METHOD(buy_ticketInvalid)
 		{
-			Visitor human;
-			Ticket pass(0);
+			Visitor Human;
+			Ticket Pass(0);
 
 			try
 			{
-				human.buy_ticket(pass);
+				Human.buy_ticket(Pass);
 			}
-			catch (const char exception[])
+			catch (const char Exception[])
 			{
-				Assert::AreEqual(exception, "!This ticket isn't available!");
+				Assert::AreEqual(Exception, "!This ticket isn't available!");
 			}
 
 		}
 
 		TEST_METHOD(enter)
 		{
-			Visitor human;
-			TicketChecker checker;
-			Ticket pass(1);
+			Visitor Human;
+			TicketChecker Checker;
+			Ticket Pass(1);
 
-			human.buy_ticket(pass);
+			Human.buy_ticket(Pass);
 
-			TicketEmitter::add(checker, pass);
+			TicketEmitter::add(Checker, Pass);
 
-			human.enter(checker);
+			Human.enter(Checker);
 
-			Assert::IsTrue(human.get_Pass() == Ticket(NULL));
+			Assert::IsTrue(Human.get_Pass() == Ticket(NULL));
 
 		}
 	};

@@ -9,7 +9,7 @@ class Guide : public Person
 {
 	friend class StaffAdministrator;
 
-	bool busy;
+	bool Busy;
 
 	std::string Specialization;
 	std::vector <Section> Path;

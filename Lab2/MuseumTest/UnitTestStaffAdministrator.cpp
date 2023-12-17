@@ -20,94 +20,94 @@ namespace UnitTestStaffAdministrator
 
 		TEST_METHOD(Add)
 		{
-			MuseumBuilder builder;
+			MuseumBuilder Builder;
 
-			builder.set_HR();
-			builder.init_Staff();
+			Builder.set_HR();
+			Builder.init_Staff();
 
 
-			Museum museum = builder.build();
-			vector <Section> path = { Section("Stone age", "First humans in belarussian land"),
+			Museum Museum = Builder.build();
+			vector <Section> Path = { Section("Stone age", "First humans in belarussian land"),
 									 Section("Cooper age", "First cooper tools in belarussian land"),
 									 Section("Iron age and first nations", "First iron tools and towns in belarussian land") };
 
-			Guide teller("George", "Polleus", "Sergeyevich", " Early history of Belarus", path);
+			Guide Teller("George", "Polleus", "Sergeyevich", " Early history of Belarus", Path);
 
-			museum.get_HR().add(museum, teller);
+			Museum.get_HR().add(Museum, Teller);
 
-			Assert::IsTrue(museum.get_HR().get_Staff(museum)[0] == teller);
+			Assert::IsTrue(Museum.get_HR().get_Staff(Museum)[0] == Teller);
 		}
 
 		TEST_METHOD(Remove)
 		{
-			MuseumBuilder builder;
+			MuseumBuilder Builder;
 
-			builder.set_HR();
-			builder.init_Staff();
+			Builder.set_HR();
+			Builder.init_Staff();
 
 
-			Museum museum = builder.build();
-			vector <Section> path = { Section("Stone age", "First humans in belarussian land"),
+			Museum Museum = Builder.build();
+			vector <Section> Path = { Section("Stone age", "First humans in belarussian land"),
 									  Section("Cooper age", "First cooper tools in belarussian land"),
 									  Section("Iron age and first nations", "First iron tools and towns in belarussian land") };
 
-			Guide teller("George", "Polleus", "Sergeyevich", " Early history of Belarus", path);
+			Guide Teller("George", "Polleus", "Sergeyevich", " Early history of Belarus", Path);
 
-			museum.get_HR().add(museum, teller);
-			museum.get_HR().remove(museum, teller);
+			Museum.get_HR().add(Museum, Teller);
+			Museum.get_HR().remove(Museum, Teller);
 
-			Assert::IsTrue(museum.get_HR().get_Staff(museum).empty());
+			Assert::IsTrue(Museum.get_HR().get_Staff(Museum).empty());
 		}
 
 		TEST_METHOD(Change)
 		{
-			MuseumBuilder builder;
+			MuseumBuilder Builder;
 
-			builder.set_HR();
-			builder.init_Staff();
+			Builder.set_HR();
+			Builder.init_Staff();
 
 
-			Museum museum = builder.build();
-			vector <Section> oldPath = { Section("Stone age", "First humans in belarussian land"),
+			Museum Museum = Builder.build();
+			vector <Section> OldPath = { Section("Stone age", "First humans in belarussian land"),
 									  Section("Cooper age", "First cooper tools in belarussian land"),
 									  Section("Iron age and first nations", "First iron tools and towns in belarussian land") };
 
-			vector <Section> newPath = { Section("New time", "Belarussian lands as a part of Russian Empire"),
+			vector <Section> NewPath = { Section("New time", "Belarussian lands as a part of Russian Empire"),
 									  Section("WWI", "Belarusian lands during of WWI "),
 									  Section("WWII", "USSR during of WWII"),
 									  Section("Newest time", "Belarussian statehood") };
 
 
-			Guide oldTeller("Old name", "Old surname", "Old middlename", " Early history of Belarus", oldPath);
-			Guide newTeller("New name", "New surname", "New middlename", "History of Belarus", newPath);
+			Guide OldTeller("Old name", "Old surname", "Old middlename", " Early history of Belarus", OldPath);
+			Guide NewTeller("New name", "New surname", "New middlename", "History of Belarus", NewPath);
 
-			museum.get_HR().add(museum, oldTeller);
-			museum.get_HR().change(museum, oldTeller, newTeller);
+			Museum.get_HR().add(Museum, OldTeller);
+			Museum.get_HR().change(Museum, OldTeller, NewTeller);
 
-			Assert::IsTrue(museum.get_HR().get_Staff(museum)[0] == newTeller);
+			Assert::IsTrue(Museum.get_HR().get_Staff(Museum)[0] == NewTeller);
 		}
 
 		TEST_METHOD(set_Path)
 		{
-			MuseumBuilder builder;
+			MuseumBuilder Builder;
 
-			builder.set_HR();
-			builder.init_Staff();
+			Builder.set_HR();
+			Builder.init_Staff();
 
 
-			Museum museum = builder.build();
-			vector <Section> path = { Section("Stone age", "First humans in belarussian land"),
+			Museum Museum = Builder.build();
+			vector <Section> Path = { Section("Stone age", "First humans in belarussian land"),
 									 Section("Cooper age", "First cooper tools in belarussian land"),
 									 Section("Iron age and first nations", "First iron tools and towns in belarussian land") };
 
-			Guide teller("");
+			Guide Teller("");
 
-			museum.get_HR().add(museum, teller);
-			museum.get_HR().set_Path(teller, path);
+			Museum.get_HR().add(Museum, Teller);
+			Museum.get_HR().set_Path(Teller, Path);
 
-			Assert::IsTrue(museum.get_HR().get_Path(teller)[0] == teller.get_Path()[0]);
-			Assert::IsTrue(museum.get_HR().get_Path(teller)[1] == teller.get_Path()[1]);
-			Assert::IsTrue(museum.get_HR().get_Path(teller)[2] == teller.get_Path()[2]);
+			Assert::IsTrue(Museum.get_HR().get_Path(Teller)[0] == Teller.get_Path()[0]);
+			Assert::IsTrue(Museum.get_HR().get_Path(Teller)[1] == Teller.get_Path()[1]);
+			Assert::IsTrue(Museum.get_HR().get_Path(Teller)[2] == Teller.get_Path()[2]);
 		}
 
 	};

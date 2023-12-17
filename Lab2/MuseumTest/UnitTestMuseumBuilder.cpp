@@ -23,48 +23,48 @@ namespace UnitTestMuseum
 
 		TEST_METHOD(Default)
 		{
-			MuseumBuilder builder;
+			MuseumBuilder Builder;
 
-			builder.set_Manager();
-			builder.set_HR();
-			builder.init_Chambers();
-			builder.init_Staff();
+			Builder.set_Manager();
+			Builder.set_HR();
+			Builder.init_Chambers();
+			Builder.init_Staff();
 
-			Museum museum = builder.build();
+			Museum Museum = Builder.build();
 
-			Assert::AreEqual(museum.get_Manager().get_Name(), string(""));
-			Assert::AreEqual(museum.get_Manager().get_Surname(), string(""));
-			Assert::AreEqual(museum.get_Manager().get_MiddleName(), string(""));
+			Assert::AreEqual(Museum.get_Manager().get_Name(), string(""));
+			Assert::AreEqual(Museum.get_Manager().get_Surname(), string(""));
+			Assert::AreEqual(Museum.get_Manager().get_MiddleName(), string(""));
 
-			Assert::AreEqual(museum.get_HR().get_Name(), string(""));
-			Assert::AreEqual(museum.get_HR().get_Surname(), string(""));
-			Assert::AreEqual(museum.get_HR().get_MiddleName(), string(""));
+			Assert::AreEqual(Museum.get_HR().get_Name(), string(""));
+			Assert::AreEqual(Museum.get_HR().get_Surname(), string(""));
+			Assert::AreEqual(Museum.get_HR().get_MiddleName(), string(""));
 
-			Assert::IsTrue(museum.get_Manager().get_Chambers(museum).empty());
-			Assert::IsTrue(museum.get_HR().get_Staff(museum).empty());
+			Assert::IsTrue(Museum.get_Manager().get_Chambers(Museum).empty());
+			Assert::IsTrue(Museum.get_HR().get_Staff(Museum).empty());
 		}
 
 		TEST_METHOD(Parametrized)
 		{
-			MuseumBuilder builder;
+			MuseumBuilder Builder;
 
-			builder.set_Manager("Tomas", "Adyson", "Kyler");
-			builder.set_HR("Ivan", "Ivanov", "Ivanovich");
-			builder.init_Chambers();
-			builder.init_Staff();
+			Builder.set_Manager("Tomas", "Adyson", "Kyler");
+			Builder.set_HR("Ivan", "Ivanov", "Ivanovich");
+			Builder.init_Chambers();
+			Builder.init_Staff();
 
-			Museum museum = builder.build();
+			Museum Museum = Builder.build();
 
-			Assert::AreEqual(museum.get_Manager().get_Name(), string("Tomas"));
-			Assert::AreEqual(museum.get_Manager().get_Surname(), string("Adyson"));
-			Assert::AreEqual(museum.get_Manager().get_MiddleName(), string("Kyler"));
+			Assert::AreEqual(Museum.get_Manager().get_Name(), string("Tomas"));
+			Assert::AreEqual(Museum.get_Manager().get_Surname(), string("Adyson"));
+			Assert::AreEqual(Museum.get_Manager().get_MiddleName(), string("Kyler"));
 
-			Assert::AreEqual(museum.get_HR().get_Name(), string("Ivan"));
-			Assert::AreEqual(museum.get_HR().get_Surname(), string("Ivanov"));
-			Assert::AreEqual(museum.get_HR().get_MiddleName(), string("Ivanovich"));
+			Assert::AreEqual(Museum.get_HR().get_Name(), string("Ivan"));
+			Assert::AreEqual(Museum.get_HR().get_Surname(), string("Ivanov"));
+			Assert::AreEqual(Museum.get_HR().get_MiddleName(), string("Ivanovich"));
 
-			Assert::IsTrue(museum.get_Manager().get_Chambers(museum).empty());
-			Assert::IsTrue(museum.get_HR().get_Staff(museum).empty());
+			Assert::IsTrue(Museum.get_Manager().get_Chambers(Museum).empty());
+			Assert::IsTrue(Museum.get_HR().get_Staff(Museum).empty());
 		}
 	};
 }

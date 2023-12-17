@@ -18,36 +18,36 @@ namespace UnitTestTicket
 		
 		TEST_METHOD(geters)
 		{
-			Ticket pass(23, "Pass Museum");
+			Ticket Pass(23, "Pass Museum");
 
-			Assert::IsTrue(pass.get_count() == 23);
-			Assert::AreEqual(pass.get_Info(), string("Pass Museum"));
+			Assert::IsTrue(Pass.get_count() == 23);
+			Assert::AreEqual(Pass.get_Info(), string("Pass Museum"));
 		}
 
 		TEST_METHOD(Equal)
 		{
-			Ticket pass1(23);
-			Ticket pass2(23);
+			Ticket Pass1(23);
+			Ticket Pass2(23);
 
-			Assert::IsTrue(pass1 == pass2);	
+			Assert::IsTrue(Pass1 == Pass2);	
 		}
 
 		TEST_METHOD(incrANDdecr)
 		{
-			Ticket pass(23);
-			Visitor person("Michael");
-			TicketChecker checker;
+			Ticket Pass(23);
+			Visitor Person("Michael");
+			TicketChecker Checker;
 			
-			TicketEmitter::add(checker, pass);
+			TicketEmitter::add(Checker, Pass);
 
 
-			person.buy_ticket(pass);
+			Person.buy_ticket(Pass);
 
-			Assert::IsTrue(pass.get_count() == 22);
+			Assert::IsTrue(Pass.get_count() == 22);
 
-			person.enter(checker);
+			Person.enter(Checker);
 
-			Assert::IsTrue(checker.get_TicketList()[0].get_count() == 23);
+			Assert::IsTrue(Checker.get_TicketList()[0].get_count() == 23);
 
 		}
 

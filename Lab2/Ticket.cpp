@@ -10,9 +10,9 @@ bool Ticket::operator == (Ticket right)
 	return this->get_Info() == right.get_Info();
 }
 
-unsigned int Ticket::get_count()
+unsigned int Ticket::get_Count()
 {
-	return this->count;
+	return this->Count;
 }
 
 string Ticket::get_Info()
@@ -22,10 +22,10 @@ string Ticket::get_Info()
 
 void Ticket::count_increment()
 {
-	this->count++;
+	this->Count++;
 }
 
 void Ticket::count_decrement()
 {
-	this->count--;
+	this->Count--;
 }

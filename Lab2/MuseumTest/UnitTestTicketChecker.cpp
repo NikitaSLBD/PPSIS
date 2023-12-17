@@ -14,28 +14,28 @@ namespace UnitTestTicketChecker
 		
 		TEST_METHOD(geter)
 		{
-			TicketChecker checker;
+			TicketChecker Checker;
 
-			Assert::IsTrue(checker.get_TicketList().empty());
+			Assert::IsTrue(Checker.get_TicketList().empty());
 		}
 
 		TEST_METHOD(is_validFalse)
 		{
-			TicketChecker checker;
-			Ticket pass(34);
+			TicketChecker Checker;
+			Ticket Pass(34);
 
-			Assert::IsFalse(checker.is_valid(pass));
+			Assert::IsFalse(Checker.is_valid(Pass));
 		}
 
 		TEST_METHOD(is_validTrue)
 		{
-			TicketChecker checker;
-			Ticket pass1(34, "Pass"), pass2(67, "Not pass");
+			TicketChecker Checker;
+			Ticket Pass1(34, "Pass"), Pass2(67, "Not Pass");
 
-			TicketEmitter::add(checker, pass1);
-			TicketEmitter::add(checker, pass2);
+			TicketEmitter::add(Checker, Pass1);
+			TicketEmitter::add(Checker, Pass2);
 
-			Assert::IsTrue(checker.is_valid(pass2));
+			Assert::IsTrue(Checker.is_valid(Pass2));
 		}
 	};
 }

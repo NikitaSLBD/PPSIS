@@ -15,16 +15,16 @@ namespace UnitTestPerson
 		
 		TEST_METHOD(get_Surname)
 		{
-			Person human("", "Wudra");
+			Person Human("", "Wudra");
 
-			Assert::AreEqual(human.get_Surname(), string("Wudra"));
+			Assert::AreEqual(Human.get_Surname(), string("Wudra"));
 		}
 
 		TEST_METHOD(get_MiddleName)
 		{
-			Person human("", "", "Loper");
+			Person Human("", "", "Loper");
 
-			Assert::AreEqual(human.get_MiddleName(), string("Loper"));
+			Assert::AreEqual(Human.get_MiddleName(), string("Loper"));
 		}
 	};
 }

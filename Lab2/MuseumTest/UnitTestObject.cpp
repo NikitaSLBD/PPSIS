@@ -14,9 +14,9 @@ namespace UnitTestObject
 		
 		TEST_METHOD(get_Name)
 		{
-			Object sword("Sword");
+			Object Sword("Sword");
 
-			Assert::AreEqual(sword.get_Name(), string("Sword"));
+			Assert::AreEqual(Sword.get_Name(), string("Sword"));
 
 		}
 	};

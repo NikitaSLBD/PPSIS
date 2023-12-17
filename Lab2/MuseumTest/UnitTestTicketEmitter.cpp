@@ -14,35 +14,35 @@ namespace UnitTestTicketEmitter
 
 		TEST_METHOD(Add)
 		{
-			TicketChecker checker;
-			Ticket pass(15, "Pass to History branch");
+			TicketChecker Checker;
+			Ticket Pass(15, "Pass to History branch");
 
-			TicketEmitter::add(checker, pass);
+			TicketEmitter::add(Checker, Pass);
 
-			Assert::IsTrue(checker.get_TicketList()[0] == pass);
+			Assert::IsTrue(Checker.get_TicketList()[0] == Pass);
 		}
 
 		TEST_METHOD(Remove)
 		{
-			TicketChecker checker;
-			Ticket pass(15, "Pass to History branch");
+			TicketChecker Checker;
+			Ticket Pass(15, "Pass to History branch");
 
-			TicketEmitter::add(checker, pass);
-			TicketEmitter::remove(checker, pass);
+			TicketEmitter::add(Checker, Pass);
+			TicketEmitter::remove(Checker, Pass);
 
-			Assert::IsTrue(checker.get_TicketList().empty());
+			Assert::IsTrue(Checker.get_TicketList().empty());
 		}
 
 		TEST_METHOD(Change)
 		{
-			TicketChecker checker;
-			Ticket oldPass(15, "Old pass");
-			Ticket newPass(12, "New pass");
+			TicketChecker Checker;
+			Ticket OldPass(15, "Old Pass");
+			Ticket NewPass(12, "New Pass");
 
-			TicketEmitter::add(checker, oldPass);
-			TicketEmitter::change(checker, oldPass, newPass);
+			TicketEmitter::add(Checker, OldPass);
+			TicketEmitter::change(Checker, OldPass, NewPass);
 
-			Assert::IsTrue(checker.get_TicketList()[0] == newPass);
+			Assert::IsTrue(Checker.get_TicketList()[0] == newPass);
 		}
 	};
 }

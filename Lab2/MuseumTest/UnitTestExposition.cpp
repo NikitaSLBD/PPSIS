@@ -13,19 +13,19 @@ namespace UnitTestExposition
 		
 		TEST_METHOD(Equal)
 		{
-			Exposition expo1("History");
-			Exposition expo2("History");
+			Exposition Expo1("History");
+			Exposition Expo2("History");
 
-			Assert::IsTrue(expo1 == expo2);
+			Assert::IsTrue(Expo1 == Expo2);
 
 		}
 
 		TEST_METHOD(NOTequal)
 		{
-			Exposition expo1("History");
-			Exposition expo2;
+			Exposition Expo1("History");
+			Exposition Expo2;
 
-			Assert::IsFalse(expo1 == expo2);
+			Assert::IsFalse(Expo1 == Expo2);
 
 		}
 	};

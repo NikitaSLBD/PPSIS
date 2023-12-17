@@ -18,7 +18,7 @@ bool Guide::operator == (Guide right)
 
 bool Guide::is_busy()
 {
-	return this->busy;
+	return this->Busy;
 }
 
 string Guide::get_Specialization()
@@ -33,7 +33,7 @@ vector <Section> Guide::get_Path()
 
 void Guide::start_tour()
 {
-	this->busy = true;
+	this->Busy = true;
 }
 
 template <class C>
@@ -45,5 +45,5 @@ string Guide::get_Description(C Object)
 
 void Guide::end_tour()
 {
-	this->busy = false;
+	this->Busy = false;
 }
